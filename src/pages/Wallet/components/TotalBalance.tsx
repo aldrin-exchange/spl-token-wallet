@@ -82,7 +82,7 @@ const Item = ({
       : closePrice
     : price;
 
-  console.log('priceForCalculate', priceForCalculate, 'price', price)
+  // console.log('priceForCalculate', priceForCalculate, 'price', price)
 
   const usdValue =
     price === undefined // Not yet loaded.
@@ -101,55 +101,21 @@ const Item = ({
 };
 
 const TotalBalance = ({ isNavbar = true }) => {
-  const [marketsData, setMarketsData] = useState<any>(null);
   const [totalUSD, setTotalUSD] = useState(0);
-  const [publicKeys] = useWalletPublicKeys();
-  const sortedPublicKeys = useMemo(() => Array.isArray(publicKeys) ? [...publicKeys] : [], [publicKeys]);
+
+  const getTotal = async () => {
+    const total = await MarketsDataSingleton.getTotalBalance();
+    console.log('isNavbar total', isNavbar, total)
+    setTotalUSD(total)
+  }
 
   useEffect(() => {
-    const getData = async () => {
-      const data = await MarketsDataSingleton.getData();
-      setMarketsData(data);
-    };
-
-    getData();
-  }, []);
-
-  const setUsdValuesCallback = useCallback(
-    (publicKey, usdValue) => {
-      usdValues[publicKey.toString()] = usdValue;
-      if (pairsIsLoaded(sortedPublicKeys, usdValues)) {
-        const totalUsdValue: any = sortedPublicKeys
-          .filter((pk) => usdValues[pk.toString()])
-          .map((pk) => usdValues[pk.toString()])
-          .reduce((a, b) => a + b, 0.0);
-          
-        setTotalUSD(totalUsdValue);
-      }
-    },
-    [sortedPublicKeys],
-  );
-
-  const memoizedAssetsList = useMemo(() => {
-    return sortedPublicKeys.map((pk) => {
-      return React.memo((props) => {
-        return (
-          <Item
-            key={`${pk.toString()}${isNavbar}`}
-            publicKey={pk}
-            setUsdValue={setUsdValuesCallback}
-            marketsData={marketsData}
-          />
-        );
-      });
-    });
-  }, [sortedPublicKeys, setUsdValuesCallback, marketsData, isNavbar]);
+    console.log('MarketsDataSingleton.forceUpdateCounter', MarketsDataSingleton.forceUpdateCounter)
+    getTotal()
+  }, [MarketsDataSingleton.forceUpdateCounter, setTotalUSD]);
 
   return (
     <>
-      {memoizedAssetsList.map((Memoized) => (
-        <Memoized />
-      ))}
       <span>${formatNumberToUSFormat(stripDigitPlaces(totalUSD, 2))}</span>
     </>
   );

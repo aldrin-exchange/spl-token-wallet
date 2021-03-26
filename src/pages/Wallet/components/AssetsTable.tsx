@@ -176,6 +176,14 @@ const AssetsTable = ({
   const [, setTotalUSD] = useState(0);
 
   const [marketsData, setMarketsData] = useState<any>(null);
+  const [forceUpdateConter, setForceUpdateCounter] = useState(0);
+
+  useEffect(() => {
+    console.log('forceUpdateCounter')
+    setForceUpdateCounter(forceUpdateConter + 1);
+  }, [MarketsDataSingleton.forceUpdateCounter]);
+
+  console.log('rerender of table');
 
   const [
     publicKeys,
@@ -247,6 +255,7 @@ const AssetsTable = ({
           .filter((pk) => usdValues[pk.toString()])
           .map((pk) => usdValues[pk.toString()])
           .reduce((a, b) => a + b, 0.0);
+
         setTotalUSD(totalUsdValue);
       }
     },
@@ -376,68 +385,22 @@ const AssetItem = ({
   const urlSuffix = useSolanaExplorerUrlSuffix();
   const connection = useConnection();
 
-  let { amount, decimals, mint, tokenName, tokenSymbol } = balanceInfo || {
+  let {
+    amount,
+    decimals,
+    mint,
+    tokenName,
+    tokenSymbol,
+    tokenLogoUri,
+  } = balanceInfo || {
     amount: 0,
     decimals: 8,
     mint: null,
     tokenName: 'Loading...',
-    tokenSymbol: '--',
+    tokenSymbol: '',
+    tokenLogoUri: '',
   };
 
-  const [price, setPrice] = useState<number | null | undefined>(undefined);
-
-  useEffect(() => {
-    if (balanceInfo) {
-      if (balanceInfo.tokenSymbol) {
-        const coin = balanceInfo.tokenSymbol.toUpperCase();
-        // Don't fetch USD stable coins. Mark to 1 USD.
-        if (
-          coin === 'USDT' ||
-          coin === 'USDC' ||
-          coin === 'WUSDC' ||
-          coin === 'WUSDT'
-        ) {
-          setPrice(1);
-        }
-        // A Serum market exists. Fetch the price.
-        else if (serumMarkets[coin]) {
-          let m = serumMarkets[coin];
-          priceStore
-            .getPrice(connection, m.name)
-            .then((price) => {
-              setPrice(price || 0);
-            })
-            .catch((err) => {
-              console.error(err);
-              setPrice(null);
-            });
-        }
-        // No Serum market exists.
-        else {
-          setPrice(null);
-        }
-      }
-      // No token symbol so don't fetch market data.
-      else {
-        setPrice(null);
-      }
-    }
-  }, [price, balanceInfo, connection]);
-
-  let { lastPriceDiff, closePrice } = (!!marketsData &&
-    (marketsData.get(`${tokenSymbol?.toUpperCase()}_USDT`) ||
-      marketsData.get(`${tokenSymbol?.toUpperCase()}_USDC`))) || {
-    closePrice: 0,
-    lastPriceDiff: 0,
-  };
-
-  let priceForCalculate = !price
-    ? !closePrice
-      ? price
-      : closePrice
-    : price;
-
-  const prevClosePrice = (priceForCalculate || 0) + lastPriceDiff * -1;
   const quote = !!marketsData
     ? marketsData.has(`${tokenSymbol?.toUpperCase()}_USDT`)
       ? 'USDT'
@@ -446,9 +409,81 @@ const AssetItem = ({
       : 'USDT'
     : 'USDT';
 
-  const priceChangePercentage = !!priceForCalculate
+  const symbol = `${tokenSymbol}_${quote}`;
+
+  const price = MarketsDataSingleton.getDataBySymbol(symbol)?.closePrice || 0;
+
+  const formattedAmount = amount / Math.pow(10, decimals);
+
+  useEffect(() => {
+    if (tokenSymbol) {
+      const coin = tokenSymbol.toUpperCase();
+
+      // Don't fetch USD stable coins. Mark to 1 USD.
+      if (
+        coin === 'USDT' ||
+        coin === 'USDC' ||
+        coin === 'WUSDC' ||
+        coin === 'WUSDT'
+      ) {
+        if (
+          !MarketsDataSingleton.getDataBySymbol(symbol)?.dataFromBonfidaLoaded
+        ) {
+          MarketsDataSingleton.setDataBySymbol(symbol, 1, formattedAmount);
+        }
+      }
+      // A Serum market exists. Fetch the price.
+      else if (
+        serumMarkets[coin] &&
+        !MarketsDataSingleton.getDataBySymbol(symbol)?.dataFromBonfidaLoaded
+      ) {
+        let m = serumMarkets[coin];
+
+        priceStore
+          .getPrice(connection, m.name)
+          .then((price) => {
+            MarketsDataSingleton.setDataBySymbol(
+              symbol,
+              price || 0,
+              formattedAmount,
+            );
+          })
+          .catch((err) => {
+            console.error(err);
+            MarketsDataSingleton.setDataBySymbol(symbol, null, 0);
+          });
+      }
+    }
+  }, [tokenSymbol, connection]);
+
+  // set amount on load or change
+  useEffect(() => {
+    console.log('symbol', symbol, amount, decimals);
+    const formattedAmount = amount / Math.pow(10, decimals);
+
+    if (
+      !amount ||
+      !decimals ||
+      ! MarketsDataSingleton.getDataBySymbol(symbol) ||
+      MarketsDataSingleton.getDataBySymbol(symbol).amount === formattedAmount
+    )
+      return;
+
+    MarketsDataSingleton.setDataBySymbol(symbol, null, formattedAmount);
+  }, [amount, decimals, symbol]);
+
+  let { lastPriceDiff } = (!!marketsData &&
+    (marketsData.get(`${tokenSymbol?.toUpperCase()}_USDT`) ||
+      marketsData.get(`${tokenSymbol?.toUpperCase()}_USDC`))) || {
+    closePrice: 0,
+    lastPriceDiff: 0,
+  };
+
+  const prevClosePrice = price - lastPriceDiff;
+
+  const priceChangePercentage = !!price
     ? !!prevClosePrice
-      ? (priceForCalculate - prevClosePrice) / (prevClosePrice / 100)
+      ? (price - prevClosePrice) / (prevClosePrice / 100)
       : 100
     : 0;
 
@@ -462,27 +497,43 @@ const AssetItem = ({
       ? theme.customPalette.green.light
       : theme.customPalette.red.main;
 
-  const usdValue =
-    price === undefined // Not yet loaded.
-      ? undefined
-      : price === null // Loaded and empty.
-      ? null
-      : ((amount / Math.pow(10, decimals)) * price).toFixed(2); // Loaded.
+  // const usdValue =
+  //   price === undefined // Not yet loaded.
+  //     ? undefined
+  //     : price === null // Loaded and empty.
+  //     ? null
+  //     : +(formattedAmount * price).toFixed(2); // Loaded.
 
-  // console.log('tokenSymbol', tokenSymbol, usdValue, priceForCalculate, amount, decimals)
+  // console.log(
+  //   'tokenSymbol',
+  //   tokenSymbol,
+  //   usdValue,
+  //   price,
+  //   priceForCalculate,
+  //   amount,
+  //   decimals,
+  // );
 
-  useEffect(() => {
-    if (usdValue !== undefined && usdValues !== null) {
-      setUsdValue(publicKey, usdValue === null ? null : parseFloat(usdValue));
-    }
-  }, [setUsdValue, usdValue, publicKey]);
+  // useEffect(() => {
+  //   if (usdValue !== undefined) {
+  //     // console.log('setUsdValue', tokenSymbol)
+  //     setUsdValue(publicKey, usdValue === null ? null : usdValue);
+  //   }
+  // }, [usdValue]);
+
+  console.log('token', tokenSymbol, price, formattedAmount);
 
   return (
     <StyledTr theme={theme}>
       <StyledTd>
         <RowContainer justify="flex-start">
           <Row margin="0 1rem 0 0">
-            <TokenIcon mint={mint} tokenName={tokenName} size={'3.6rem'} />
+            <TokenIcon
+              mint={mint}
+              tokenLogoUri={tokenLogoUri}
+              tokenName={tokenName}
+              size={'3.6rem'}
+            />
           </Row>
           <Row direction="column">
             <RowContainer justify="flex-start">
@@ -499,12 +550,12 @@ const AssetItem = ({
             </RowContainer>
             <RowContainer justify="flex-start">
               <AssetAmount theme={theme}>{`${stripDigitPlaces(
-                amount / Math.pow(10, decimals),
+                formattedAmount,
                 8,
               )} ${tokenSymbol} / `}</AssetAmount>
               &ensp;
               <AssetAmountUSD theme={theme}>{` $${stripDigitPlaces(
-                usdValue || 0,
+                formattedAmount * price || 0,
                 2,
               )} `}</AssetAmountUSD>
             </RowContainer>
@@ -523,7 +574,10 @@ const AssetItem = ({
         <RowContainer direction="column" align="flex-start">
           <GreyTitle theme={theme}>Price</GreyTitle>
           <Title fontSize="1.4rem" fontFamily="Avenir Next Demi">
-            ${formatNumberToUSFormat(stripDigitPlaces(priceForCalculate || 0, 8))}
+            $
+            {formatNumberToUSFormat(
+              stripDigitPlaces(price || 0, price < 1 ? 8 : 2),
+            )}
           </Title>
         </RowContainer>
       </StyledTd>
@@ -533,9 +587,11 @@ const AssetItem = ({
           <GreyTitle theme={theme}>Change 24h:</GreyTitle>
           <RowContainer justify="flex-start">
             <Title fontSize="1.4rem" color={color}>
-              {!priceChangePercentage ? '0%' : `${sign24hChange}${formatNumberToUSFormat(
-                stripDigitPlaces(Math.abs(priceChangePercentage), 2),
-              )}% `}
+              {!priceChangePercentage
+                ? '0%'
+                : `${sign24hChange}${formatNumberToUSFormat(
+                    stripDigitPlaces(Math.abs(priceChangePercentage), 2),
+                  )}% `}
               &nbsp;
             </Title>
             <Title fontSize="1.4rem">/</Title>&nbsp;
