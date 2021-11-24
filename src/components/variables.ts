@@ -1,5 +1,6 @@
+export const MAIN_FONT = 'Avenir Next';
 export const FONTS = {
-  main: 'Avenir Next, sans-serif;',
+  main: `${MAIN_FONT}, sans-serif;`,
 };
 
 export const COLORS = {
@@ -10,10 +11,10 @@ export const COLORS = {
   black: '#000000',
   hint: '#96999c',
   blockBackground: '#222429',
-  borderAlt: '#383B45',
   main: '#fbf2f2',
   primary: '#651CE4',
   success: '#53DF11',
+  successAlt: '#2E5223',
   error: '#F69894',
   gray: '#383b42',
   chartGrid: '#4C4F59',
@@ -37,6 +38,9 @@ export const FONT_SIZES = {
   xs: '0.6875em', // 11px
   sm: '0.8125em', // 13px
   md: '1em', // 16px
+  lg: '1.6em', // 16px
+  xl: '2.5em',
+  xxxl: '4em', // 64px
 };
 
 export const BREAKPOINTS = {
@@ -44,6 +48,7 @@ export const BREAKPOINTS = {
   md: '768px',
   lg: '1024px',
   xl: '1200px',
+  xxl: '1400px',
 };
 
 export const SIZE = {
@@ -60,3 +65,5 @@ export const WIDTH = {
 
 export const LAYOUT_WIDTH = 1280;
 export const LAYOUT_COL_NUMBER = 12;
+
+export const TRANSITION = 'all ease-in 0.3s';
