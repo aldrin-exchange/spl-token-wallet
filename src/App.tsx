@@ -1,12 +1,12 @@
-import React, { lazy, useMemo } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { lazy, Suspense, useMemo } from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Container, Wrapper } from './components/CommonStyledComponents';
 
-const Welcome = lazy(() => import('./routes/welcome'));
+const Welcome = lazy(() => import('./routes/Welcome'));
 
 // const LOCAL_BUILD = window.location.href.includes('localhost');
 
-export default function App(children) {
+export default function App() {
   // Disallow rendering inside an iframe to prevent clickjacking.
   if (window.self !== window.top) {
     return null;
@@ -15,7 +15,11 @@ export default function App(children) {
   return (
     <BrowserRouter>
       <Container>
-        <Wrapper>{children}</Wrapper>
+        <Wrapper>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Pages />
+          </Suspense>
+        </Wrapper>
       </Container>
     </BrowserRouter>
   );
@@ -52,11 +56,7 @@ export const Pages = () => {
         {/* {!!wallet && <Redirect from="/" to="/wallet" />} */}
 
         {/* if have mnemonic in localstorage - login, otherwise - restore/import/create */}
-        {/* {hasLockedMnemonicAndSeed ? (
-          <Redirect from="/" to="/welcome_back" />
-        ) : (
-          <Redirect from="/" to="/welcome" />
-        )} */}
+        <Redirect from="/" to="/welcome" />
       </Switch>
     </>
   );

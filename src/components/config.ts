@@ -1,1 +1,1 @@
-export const EXTENSION_WIDTH = 600;
+export const EXTENSION_WIDTH = 369;

@@ -39,7 +39,8 @@ export const FONT_SIZES = {
   sm: '0.8125em', // 13px
   md: '1em', // 16px
   lg: '1.6em', // 16px
-  xl: '2.5em',
+  xl: '2em',
+  xxl: '2.5em',
   xxxl: '4em', // 64px
 };
 
