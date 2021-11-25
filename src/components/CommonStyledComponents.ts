@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { EXTENSION_WIDTH } from './config';
 import Background from '../images/background.png';
 import { BORDER_RADIUS, COLORS, FONTS, FONT_SIZES } from './variables';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   width: 369px;
@@ -63,7 +64,7 @@ export const RowWithCenteredContent = styled.div`
   align-items: center;
 `;
 
-export const VioletBox = styled.div`
+export const VioletBox = styled(Link)`
   width: calc(50% - 0.75rem);
   height: 13rem;
   display: flex;

@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useMemo } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Container, Wrapper } from './components/CommonStyledComponents';
 
 const Welcome = lazy(() => import('./routes/Welcome'));
@@ -47,9 +47,9 @@ export const Pages = () => {
 
   return (
     <>
-      <Switch>
-        <Route path="/welcome" component={Welcome} />
-        <Route path="/create" component={CreateWallet} />
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/create" element={<CreateWallet />} />
         {/* popup if connecting from dex UI */}
         {/* {window.opener && !!wallet && <Redirect from="/" to="/connect_popup" />} */}
 
@@ -57,8 +57,7 @@ export const Pages = () => {
         {/* {!!wallet && <Redirect from="/" to="/wallet" />} */}
 
         {/* if have mnemonic in localstorage - login, otherwise - restore/import/create */}
-        <Redirect from="/" to="/welcome" />
-      </Switch>
+      </Routes>
     </>
   );
 };
