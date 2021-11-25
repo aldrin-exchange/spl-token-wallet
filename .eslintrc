@@ -29,7 +29,6 @@
       "unnamedComponents":  "arrow-function"
     }],
     "import/prefer-default-export": ["off"],
-    "import/no-default-export": ["error"],
     "eol-last": "error",
     "@typescript-eslint/semi": ["error", "never"],
     "no-var": "off"
