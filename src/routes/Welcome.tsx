@@ -1,6 +1,6 @@
 import React from 'react'
 import { Welcome } from '../pages/Welcome/Welcome'
 
-const HomepageRoute = () => <Welcome />
+const WelcomeRoute = () => <Welcome />
 
-export default HomepageRoute
+export { WelcomeRoute }

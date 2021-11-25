@@ -1,12 +1,13 @@
 import React, { lazy, Suspense, useMemo } from 'react'
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Container, Wrapper } from './components/CommonStyledComponents'
 
-const Welcome = lazy(() => import('./routes/Welcome'))
+const Welcome = lazy(() => import('./routes/Welcome').then((module) => ({
+  default: module.WelcomeRoute,
+})))
+const CreateWallet = lazy(() => import('./routes/CreateWallet').then((module) => ({
+  default: module.CreateWalletRoute,
+})))
 
 // const LOCAL_BUILD = window.location.href.includes('localhost');
 export const Pages = () => {
@@ -32,7 +33,7 @@ export const Pages = () => {
   return (
     <Routes>
       <Route path="/" element={<Welcome />} />
-
+      <Route path="/create" element={<CreateWallet />} />
       {/* popup if connecting from dex UI */}
       {/* {window.opener && !!wallet && <Redirect from="/" to="/connect_popup" />} */}
 
@@ -43,7 +44,6 @@ export const Pages = () => {
     </Routes>
   )
 }
-
 
 export const App = () => {
   // Disallow rendering inside an iframe to prevent clickjacking.

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { EXTENSION_WIDTH } from './config'
 import Background from '../images/background.png'
 import {
@@ -31,21 +32,13 @@ export const XlHeader = styled.p`
   text-align: center;
 `
 
-export const LgTitle = styled.p`
-  color: ${COLORS.main};
-  font-family: ${FONTS.main};
-  font-weight: bold;
+export const LgTitle = styled(XlHeader)`
   font-size: ${FONT_SIZES.lg};
-  text-align: center;
   margin: ${(props) => props.margin || '0'};
 `
 
-export const MdDescription = styled.p`
-  color: ${COLORS.main};
-  font-family: ${FONTS.main};
-  font-weight: bold;
+export const MdDescription = styled(XlHeader)`
   font-size: ${FONT_SIZES.md};
-  text-align: center;
 `
 
 export const ContainerWithCenteredContent = styled.div`
@@ -73,7 +66,7 @@ export const RowWithCenteredContent = styled.div`
   align-items: center;
 `
 
-export const VioletBox = styled.div`
+export const VioletBox = styled(Link)`
   width: calc(50% - 0.75rem);
   height: 13rem;
   display: flex;
