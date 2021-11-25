@@ -30,6 +30,7 @@ export const Pages = () => {
     }
   }, [])
 
+
   return (
     <Routes>
       <Route path="/" element={<Welcome />} />
