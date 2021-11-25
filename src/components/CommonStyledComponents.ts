@@ -6,6 +6,10 @@ import {
   BORDER_RADIUS, COLORS, FONTS, FONT_SIZES,
 } from './variables'
 
+interface WithMargin {
+  margin?: string
+}
+
 export const Wrapper = styled.div`
   width: 369px;
   height: 600px;
@@ -32,7 +36,7 @@ export const XlHeader = styled.p`
   text-align: center;
 `
 
-export const LgTitle = styled(XlHeader)`
+export const LgTitle = styled(XlHeader) <WithMargin>`
   font-size: ${FONT_SIZES.lg};
   margin: ${(props) => props.margin || '0'};
 `
@@ -50,7 +54,7 @@ export const ContainerWithCenteredContent = styled.div`
   width: 100%;
 `
 
-export const RowWithStrechedContent = styled.div`
+export const RowWithStrechedContent = styled.div<WithMargin>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -66,7 +70,7 @@ export const RowWithCenteredContent = styled.div`
   align-items: center;
 `
 
-export const VioletBox = styled(Link)`
+export const VioletBox = styled(Link) <WithMargin>`
   width: calc(50% - 0.75rem);
   height: 13rem;
   display: flex;
