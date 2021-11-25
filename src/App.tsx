@@ -9,10 +9,6 @@ import { Container, Wrapper } from './components/CommonStyledComponents'
 const Welcome = lazy(() => import('./routes/Welcome'))
 
 // const LOCAL_BUILD = window.location.href.includes('localhost');
-
-const a = 1
-
-a.toNum()
 export const Pages = () => {
   useMemo(() => {
     const params = new URLSearchParams(window.location.hash.slice(1))
