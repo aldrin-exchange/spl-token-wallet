@@ -1,7 +1,7 @@
-export const MAIN_FONT = 'Avenir Next';
+export const MAIN_FONT = 'Avenir Next'
 export const FONTS = {
   main: `${MAIN_FONT}, sans-serif;`,
-};
+}
 
 export const COLORS = {
   bodyBackground: '#17181A',
@@ -23,7 +23,7 @@ export const COLORS = {
   navLinkActiveBg: 'rgb(46, 46, 46)',
   navLinkActive: 'rgb(209, 221, 239)',
   primaryWhite: '#F8FAFF',
-};
+}
 
 export const BORDER_RADIUS = {
   xs: '2px',
@@ -32,7 +32,7 @@ export const BORDER_RADIUS = {
   lg: '16px',
   xl: '32px',
   xxl: '56px',
-};
+}
 
 export const FONT_SIZES = {
   xs: '0.6875em', // 11px
@@ -42,7 +42,7 @@ export const FONT_SIZES = {
   xl: '2em',
   xxl: '2.5em',
   xxxl: '4em', // 64px
-};
+}
 
 export const BREAKPOINTS = {
   sm: '540px',
@@ -50,21 +50,21 @@ export const BREAKPOINTS = {
   lg: '1024px',
   xl: '1200px',
   xxl: '1400px',
-};
+}
 
 export const SIZE = {
   fontSize: '16px',
   defaultPadding: '10px',
-};
+}
 
 export const WIDTH = {
   sm: '10%',
   md: '30%',
   lg: '60%',
   xl: '100%',
-};
+}
 
-export const LAYOUT_WIDTH = 1280;
-export const LAYOUT_COL_NUMBER = 12;
+export const LAYOUT_WIDTH = 1280
+export const LAYOUT_COL_NUMBER = 12
 
-export const TRANSITION = 'all ease-in 0.3s';
+export const TRANSITION = 'all ease-in 0.3s'

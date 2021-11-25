@@ -1,7 +1,9 @@
-import styled from 'styled-components';
-import { EXTENSION_WIDTH } from './config';
-import Background from '../images/background.png';
-import { BORDER_RADIUS, COLORS, FONTS, FONT_SIZES } from './variables';
+import styled from 'styled-components'
+import { EXTENSION_WIDTH } from './config'
+import Background from '../images/background.png'
+import {
+  BORDER_RADIUS, COLORS, FONTS, FONT_SIZES,
+} from './variables'
 
 export const Wrapper = styled.div`
   width: 369px;
@@ -11,7 +13,7 @@ export const Wrapper = styled.div`
   background-image: url(${Background});
   background-color: ${COLORS.bodyBackground};
   background-size: cover;
-`;
+`
 
 export const Container = styled.div`
   display: flex;
@@ -19,7 +21,7 @@ export const Container = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-`;
+`
 
 export const XlHeader = styled.p`
   color: ${COLORS.main};
@@ -27,7 +29,7 @@ export const XlHeader = styled.p`
   font-weight: bold;
   font-size: ${FONT_SIZES.xl};
   text-align: center;
-`;
+`
 
 export const LgTitle = styled.p`
   color: ${COLORS.main};
@@ -36,7 +38,7 @@ export const LgTitle = styled.p`
   font-size: ${FONT_SIZES.lg};
   text-align: center;
   margin: ${(props) => props.margin || '0'};
-`;
+`
 
 export const MdDescription = styled.p`
   color: ${COLORS.main};
@@ -44,7 +46,7 @@ export const MdDescription = styled.p`
   font-weight: bold;
   font-size: ${FONT_SIZES.md};
   text-align: center;
-`;
+`
 
 export const ContainerWithCenteredContent = styled.div`
   display: flex;
@@ -53,7 +55,7 @@ export const ContainerWithCenteredContent = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-`;
+`
 
 export const RowWithStrechedContent = styled.div`
   display: flex;
@@ -62,14 +64,14 @@ export const RowWithStrechedContent = styled.div`
   align-items: center;
   width: 100%;
   margin: ${(props) => props.margin || '0'};
-`;
+`
 
 export const RowWithCenteredContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const VioletBox = styled.div`
   width: calc(50% - 0.75rem);
@@ -82,4 +84,4 @@ export const VioletBox = styled.div`
   background-color: ${COLORS.primary};
   border-radius: ${BORDER_RADIUS.lg};
   margin: ${(props) => props.margin || '0'};
-`;
+`

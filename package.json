@@ -28,7 +28,17 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
     "cross-env": "^7.0.3",
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb": "^19.0.1",
+    "eslint-config-airbnb-typescript": "^16.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
     "gh-pages": "^3.1.0",
     "git-format-staged": "^2.1.0",
     "husky": "^7.0.4",
@@ -47,22 +57,8 @@
     "build:extension": "yarn build && cp -a ./build/. ./extension/build/ && yarn build:extension-scripts",
     "build:extension-scripts": "cp -a ./extension/src/. ./extension/build/.",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es6": true,
-      "webextensions": true
-    },
-    "extends": [
-      "react-app"
-    ]
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "^.+\\.cjs$"
-    ]
+    "eject": "react-scripts eject",
+    "lint": "eslint . --ext .ts,.tsx --fix"
   },
   "browserslist": {
     "production": [
