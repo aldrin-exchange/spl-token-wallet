@@ -29,21 +29,13 @@ export const XlHeader = styled.p`
   text-align: center;
 `;
 
-export const LgTitle = styled.p`
-  color: ${COLORS.main};
-  font-family: ${FONTS.main};
-  font-weight: bold;
+export const LgTitle = styled(XlHeader)`
   font-size: ${FONT_SIZES.lg};
-  text-align: center;
   margin: ${(props) => props.margin || '0'};
 `;
 
-export const MdDescription = styled.p`
-  color: ${COLORS.main};
-  font-family: ${FONTS.main};
-  font-weight: bold;
+export const MdDescription = styled(XlHeader)`
   font-size: ${FONT_SIZES.md};
-  text-align: center;
 `;
 
 export const ContainerWithCenteredContent = styled.div`

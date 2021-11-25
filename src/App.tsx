@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Container, Wrapper } from './components/CommonStyledComponents';
 
 const Welcome = lazy(() => import('./routes/Welcome'));
+const CreateWallet = lazy(() => import('./routes/CreateWallet'));
 
 // const LOCAL_BUILD = window.location.href.includes('localhost');
 
@@ -48,7 +49,7 @@ export const Pages = () => {
     <>
       <Switch>
         <Route path="/welcome" component={Welcome} />
-
+        <Route path="/create" component={CreateWallet} />
         {/* popup if connecting from dex UI */}
         {/* {window.opener && !!wallet && <Redirect from="/" to="/connect_popup" />} */}
 
