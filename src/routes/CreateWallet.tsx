@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { CreateWallet } from '../pages/CreateWallet/CreateWallet';
+import * as React from 'react'
+import { CreateWallet } from '../pages/CreateWallet/CreateWallet'
 
-export default function WelcomeRoute() {
-    return <CreateWallet />;
-}
+const CreateWalletRoute = () => <CreateWallet />
+
+export { CreateWalletRoute }

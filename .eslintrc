@@ -1,0 +1,42 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "airbnb",
+    "airbnb-typescript"
+  ],
+  "rules": {
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 2,
+        "maxEOF": 1
+      }
+    ],
+    "react/function-component-definition": ["error", {
+      "namedComponents": "arrow-function",
+      "unnamedComponents":  "arrow-function"
+    }],
+    "import/prefer-default-export": ["off"],
+    "import/no-default-export": ["error"],
+    "eol-last": "error",
+    "@typescript-eslint/semi": ["error", "never"],
+    "no-var": "off"
+  },
+  "parserOptions": {
+    "project": [
+      "tsconfig.json"
+    ]
+  }
+}

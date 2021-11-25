@@ -1,6 +1,8 @@
-import React from 'react';
-import { ContainerWithCenteredContent } from '../../components/CommonStyledComponents';
+import React from 'react'
+import { ContainerWithCenteredContent } from '../../components/CommonStyledComponents'
 
-export const CreateWallet = () => {
-    return <ContainerWithCenteredContent>gggggg</ContainerWithCenteredContent>;
-};
+const CreateWallet = () => (
+  <ContainerWithCenteredContent>gggggg</ContainerWithCenteredContent>
+)
+
+export { CreateWallet }
