@@ -14,6 +14,10 @@ interface NeedHeader {
   needHeader?: boolean;
 }
 
+interface StyledButton {
+  background?: string;
+}
+
 export const Wrapper = styled.div`
   width: 369px;
   height: 600px;
@@ -106,9 +110,9 @@ export const YellowHintBlock = styled.div`
   text-align: center;
   line-height: 2.5rem;
 `
-export const Button = styled.button`
+export const Button = styled.button<StyledButton>`
   width: 100%;
-  background: ${COLORS.primary};
+  background: ${(props) => props.background || COLORS.primary};
   font-family: ${FONTS.md};
   padding-top: 1.3rem;
   padding-bottom: 1.3rem;
@@ -125,4 +129,17 @@ export const TextContainer = styled.div`
   background: rgba(34, 36, 41, 0.7);
   border: 0.1rem solid ${COLORS.border};
   border-radius: ${BORDER_RADIUS.lg};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+`
+export const SmallRoundButton = styled.button`
+  width: 6rem;
+  height: 4rem;
+  color: ${COLORS.main};
+  font-size: ${FONT_SIZES.rg};
+  border-radius: ${BORDER_RADIUS.rg};
+  background: rgba(34, 36, 41, 0.7);
+  border: 0.2rem solid ${COLORS.border};
 `

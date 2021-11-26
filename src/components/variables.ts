@@ -36,6 +36,7 @@ export const BORDER_RADIUS = {
   xs: '2px',
   sm: '4px',
   md: '8px',
+  rg: '12px',
   lg: '16px',
   xl: '32px',
   xxl: '56px',
