@@ -5,8 +5,8 @@ import {
   InnerWrapper,
   Wrapper,
 } from './components/CommonStyledComponents'
-import { Header } from './components/Header/Header'
-import { Navbar } from './components/Navbar/Navbar'
+// import { Header } from './components/Header/Header'
+// import { Navbar } from './components/Navbar/Navbar'
 
 const Welcome = lazy(() => import('./routes/Welcome').then((module) => ({
   default: module.WelcomeRoute,
@@ -63,9 +63,9 @@ export const App = () => {
         <Wrapper>
           <InnerWrapper>
             <Suspense fallback={<div>Loading...</div>}>
-              <Header />
+              {/* <Header /> */}
               <Pages />
-              <Navbar />
+              {/* <Navbar /> */}
             </Suspense>
           </InnerWrapper>
         </Wrapper>

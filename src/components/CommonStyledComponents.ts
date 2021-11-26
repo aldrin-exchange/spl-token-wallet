@@ -16,6 +16,12 @@ interface NeedHeader {
 
 interface StyledButton {
   background?: string;
+  needOpacity?: boolean;
+}
+
+interface StyledTextContainer {
+  needBorder?: boolean;
+  needOpacity?: boolean;
 }
 
 export const Wrapper = styled.div`
@@ -67,7 +73,7 @@ export const ContainerWithCenteredContent = styled.div`
 export const ContainerWithDispersedContent = styled(
   ContainerWithCenteredContent,
 )`
-  justify-content: space-between;
+  justify-content: space-around;
 `
 
 export const RowWithStrechedContent = styled.div<WithMargin>`
@@ -98,6 +104,7 @@ export const VioletBox = styled(Link)<WithMargin>`
   border-radius: ${BORDER_RADIUS.lg};
   margin: ${(props) => props.margin || '0'};
 `
+
 export const YellowHintBlock = styled.div`
   display: inline;
   background: rgba(189, 136, 0, 0.5);
@@ -110,6 +117,7 @@ export const YellowHintBlock = styled.div`
   text-align: center;
   line-height: 2.5rem;
 `
+
 export const Button = styled.button<StyledButton>`
   width: 100%;
   background: ${(props) => props.background || COLORS.primary};
@@ -121,25 +129,31 @@ export const Button = styled.button<StyledButton>`
   outline: none;
   border: none;
   border-radius: ${BORDER_RADIUS.md};
+  cursor: pointer;
 `
-export const TextContainer = styled.div`
-  padding: 2rem 1rem;
-  height: 20rem;
+
+export const TextContainer = styled.div<StyledTextContainer>`
+  padding: ${(props) => (props.needBorder ? '2rem 1rem' : '0 1rem')};
+  height: 17rem;
   width: calc(100% - 2rem);
-  background: rgba(34, 36, 41, 0.7);
-  border: 0.1rem solid ${COLORS.border};
+  background: ${(props) => (props.needBorder ? 'rgba(34, 36, 41, 0.7)' : 'none')};
+  border: ${(props) => (props.needBorder ? `0.1rem solid ${COLORS.border}` : 'none')};
   border-radius: ${BORDER_RADIUS.lg};
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+
+  opacity: ${(props) => (props.needOpacity ? '0.5' : '1')};
 `
-export const SmallRoundButton = styled.button`
+
+export const SmallRoundButton = styled.button<StyledButton>`
   width: 6rem;
-  height: 4rem;
+  height: 3.5rem;
   color: ${COLORS.main};
   font-size: ${FONT_SIZES.rg};
   border-radius: ${BORDER_RADIUS.rg};
   background: rgba(34, 36, 41, 0.7);
   border: 0.2rem solid ${COLORS.border};
+  cursor: pointer;
 `

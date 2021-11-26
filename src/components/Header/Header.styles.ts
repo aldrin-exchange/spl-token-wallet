@@ -17,6 +17,7 @@ export const BackButton = styled.button`
   background: ${COLORS.background};
   border-radius: ${BORDER_RADIUS.xl};
   border: none;
+  cursor: pointer;
 
   img {
     margin: 0 3px 1px 0;
