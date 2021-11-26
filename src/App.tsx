@@ -1,6 +1,12 @@
 import React, { lazy, Suspense, useMemo } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Container, Wrapper } from './components/CommonStyledComponents'
+import {
+  Container,
+  InnerWrapper,
+  Wrapper,
+} from './components/CommonStyledComponents'
+import { Header } from './components/Header/Header'
+import { Navbar } from './components/Navbar/Navbar'
 
 const Welcome = lazy(() => import('./routes/Welcome').then((module) => ({
   default: module.WelcomeRoute,
@@ -29,11 +35,11 @@ export const Pages = () => {
     }
   }, [])
 
-
   return (
     <Routes>
-      <Route path="/" element={<Welcome />} />
+      <Route path="/welcome" element={<Welcome />} />
       <Route path="/create" element={<CreateWallet />} />
+
       {/* popup if connecting from dex UI */}
       {/* {window.opener && !!wallet && <Redirect from="/" to="/connect_popup" />} */}
 
@@ -50,13 +56,18 @@ export const App = () => {
   if (window.self !== window.top) {
     return null
   }
+
   return (
     <BrowserRouter>
       <Container>
         <Wrapper>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Pages />
-          </Suspense>
+          <InnerWrapper>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Header />
+              <Pages />
+              <Navbar />
+            </Suspense>
+          </InnerWrapper>
         </Wrapper>
       </Container>
     </BrowserRouter>

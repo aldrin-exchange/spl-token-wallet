@@ -5,10 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Wallet™ with support for SPL tokens."
-    />
+    <meta name="description" content="Wallet™ with support for SPL tokens." />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -28,11 +25,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
     /> -->
-
     <link
       rel="preload"
       as="font"
-      href="/fonts/AvenirNextCyr-Demi.woff2"
+      href="/fonts/Inter-Light.woff2"
       type="font/woff2"
       crossorigin="anonymous"
     />
@@ -40,7 +36,7 @@
     <link
       rel="preload"
       as="font"
-      href="/fonts/AvenirNextCyr-Bold.woff2"
+      href="/fonts/Inter-Regular.woff2"
       type="font/woff2"
       crossorigin="anonymous"
     />
@@ -48,7 +44,7 @@
     <link
       rel="preload"
       as="font"
-      href="/fonts/AvenirNextCyr-Medium.woff2"
+      href="/fonts/Inter-Bold.woff2"
       type="font/woff2"
       crossorigin="anonymous"
     />
@@ -56,7 +52,7 @@
     <link
       rel="preload"
       as="font"
-      href="/fonts/AvenirNextCyr-Regular.woff2"
+      href="/fonts/Inter-SemiBold.woff2"
       type="font/woff2"
       crossorigin="anonymous"
     />
@@ -64,53 +60,100 @@
     <title>Wallet by Aldrin</title>
     <style>
       @font-face {
-        font-family: 'Avenir Next';
-        font-style: normal;
-        font-weight: 400;
-        font-display: block;
-        src: local('Avenir Next'), local('AvenirNextCyr-Regular'),
-          url('/fonts/AvenirNextCyr-Regular.woff2') format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
-          U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-
-      @font-face {
-        font-family: 'Avenir Next Medium';
-        font-style: normal;
-        font-weight: 500;
-        font-display: block;
-        src: local('Avenir Next Medium'), local('AvenirNextCyr-Medium'),
-          url('/fonts/AvenirNextCyr-Medium.woff2') format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
-          U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-
-      @font-face {
-        font-family: 'Avenir Next Demi';
-        font-style: normal;
-        font-weight: 600;
-        font-display: block;
-        src: local('Avenir Next Demi'), local('AvenirNextCyr-Demi'),
-          url('/fonts/AvenirNextCyr-Demi.woff2') format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
-          U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-
-      @font-face {
-        font-family: 'Avenir Next Bold';
+        font-family: 'Inter Extra Light';
         font-style: normal;
         font-weight: 700;
         font-display: block;
-        src: local('Avenir Next Bold'), local('AvenirNextCyr-Bold'),
-          url('/fonts/AvenirNextCyr-Bold.woff2') format('woff2');
+        src: local('Inter Extra Light'), local('Inter-ExtraLight'),
+          url('/fonts/Inter-ExtraLight.woff2') format('woff2');
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
           U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
           U+2212, U+2215, U+FEFF, U+FFFD;
       }
 
+      @font-face {
+        font-family: 'Inter Light';
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+        src: local('Inter Light'), local('Inter-Light'),
+          url('/fonts/Inter-Light.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      @font-face {
+        font-family: 'Inter Medium';
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+        src: local('Inter Medium'), local('Inter-Medium'),
+          url('/fonts/Inter-Medium.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      @font-face {
+        font-family: 'Inter Regular';
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+        src: local('Inter Regular'), local('Inter-Regular'),
+          url('/fonts/Inter-Regular.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      @font-face {
+        font-family: 'Inter Black';
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+        src: local('Inter Black'), local('Inter-Black'),
+          url('/fonts/Inter-Black.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      @font-face {
+        font-family: 'Inter Bold';
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+        src: local('Inter Bold'), local('Inter-Bold'),
+          url('/fonts/Inter-Bold.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      @font-face {
+        font-family: 'Inter Semi Bold';
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+        src: local('Inter Semi Bold'), local('Inter-Semi-Bold'),
+          url('/fonts/Inter-SemiBold.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      @font-face {
+        font-family: 'Inter Thin';
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+        src: local('Inter Thin'), local('Inter-Thin'),
+          url('/fonts/Inter-Thin.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
       html {
         font-size: 10px;
       }
@@ -126,7 +169,6 @@
           font-size: 8px;
         }
       }
-
 
       @media screen and (min-width: 1920px) {
         html {
@@ -152,11 +194,9 @@
         }
       }
 
-
-
       body {
         margin: 0;
-        font-family: 'Avenir Next Medium';
+        font-family: 'Inter Regular';
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background: #17181a !important;
@@ -168,15 +208,17 @@
         height: 100%;
       }
 
-      a, a:hover {
+      a,
+      a:hover {
         text-decoration: none;
       }
 
-      input, textarea {
+      input,
+      textarea {
         resize: none;
       }
 
-      .MuiTabs-indicator.MuiTabs-indicator  {
+      .MuiTabs-indicator.MuiTabs-indicator {
         background: transparent;
       }
 
@@ -186,14 +228,13 @@
       }
 
       ::-webkit-scrollbar-thumb {
-        background: #651CE4;
+        background: #651ce4;
       }
 
       #client-snackbar {
         font-size: 1.6rem;
         color: #fff;
       }
-    
     </style>
   </head>
   <body>

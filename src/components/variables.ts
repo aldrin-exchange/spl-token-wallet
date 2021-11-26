@@ -1,6 +1,13 @@
-export const MAIN_FONT = 'Avenir Next'
+export const MAIN_FONT = 'Inter'
 export const FONTS = {
-  main: `${MAIN_FONT}, sans-serif;`,
+  exlt: `${MAIN_FONT} Extra Light`,
+  lt: `${MAIN_FONT} Light`,
+  th: `${MAIN_FONT} Thin`,
+  md: `${MAIN_FONT} Medium`,
+  rg: `${MAIN_FONT} Regular`,
+  bd: `${MAIN_FONT} Bold`,
+  sbd: `${MAIN_FONT} Semi Bold`,
+  bl: `${MAIN_FONT} Black`,
 }
 
 export const COLORS = {
@@ -37,8 +44,9 @@ export const BORDER_RADIUS = {
 export const FONT_SIZES = {
   xs: '0.6875em', // 11px
   sm: '0.8125em', // 13px
+  rg: '1.3rem',
   md: '1em', // 16px
-  lg: '1.6em', // 16px
+  lg: '1.6rem', // 16px
   xl: '2em',
   xxl: '2.5em',
   xxxl: '4em', // 64px

@@ -17,15 +17,14 @@ export const Welcome = () => (
     <LgTitle margin="1rem 0 2rem 0">Welcome to</LgTitle>
     <img src={Logo} alt="logo" width="160px" />
     <RowWithStrechedContent margin="12rem 0 0 0">
-      <VioletBox to="/" margin="0 0.75rem 0 1.5rem">
+      <VioletBox to="/">
         <img src={Restore} alt="restore" width="40px" />
         <RowWithCenteredContent>
           <LgTitle>Restore Wallet</LgTitle>
           <MdDescription>with Seed Phrase</MdDescription>
         </RowWithCenteredContent>
       </VioletBox>
-      {' '}
-      <VioletBox to="/create" margin="0 1.5rem 0 0.75rem">
+      <VioletBox to="/create">
         <img src={Plus} alt="create" width="40px" />
         <LgTitle margin="1rem 0 2rem">Create Wallet</LgTitle>
       </VioletBox>

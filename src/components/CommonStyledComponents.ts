@@ -7,14 +7,17 @@ import {
 } from './variables'
 
 interface WithMargin {
-  margin?: string
+  margin?: string;
+}
+
+interface NeedHeader {
+  needHeader?: boolean;
 }
 
 export const Wrapper = styled.div`
   width: 369px;
   height: 600px;
   max-width: ${EXTENSION_WIDTH}px;
-  max-height: 100%;
   background-image: url(${Background});
   background-color: ${COLORS.bodyBackground};
   background-size: cover;
@@ -24,24 +27,27 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
   width: 100%;
+  height: 100%;
+`
+export const InnerWrapper = styled(Container)<NeedHeader>`
+  height: ${(props) => (!props.needHeader ? '100%' : 'calc(100% - 17rem)')};
+  flex-direction: column;
 `
 
-export const XlHeader = styled.p`
+export const XxlHeader = styled.p`
   color: ${COLORS.main};
-  font-family: ${FONTS.main};
-  font-weight: bold;
-  font-size: ${FONT_SIZES.xl};
+  font-family: ${FONTS.bd};
+  font-size: ${FONT_SIZES.xxl};
   text-align: center;
 `
 
-export const LgTitle = styled(XlHeader) <WithMargin>`
+export const LgTitle = styled(XxlHeader)<WithMargin>`
   font-size: ${FONT_SIZES.lg};
   margin: ${(props) => props.margin || '0'};
 `
 
-export const MdDescription = styled(XlHeader)`
+export const MdDescription = styled(XxlHeader)`
   font-size: ${FONT_SIZES.md};
 `
 
@@ -51,7 +57,13 @@ export const ContainerWithCenteredContent = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100%;
+  width: calc(100% - 4rem);
+  padding: 2rem;
+`
+export const ContainerWithDispersedContent = styled(
+  ContainerWithCenteredContent,
+)`
+  justify-content: space-between;
 `
 
 export const RowWithStrechedContent = styled.div<WithMargin>`
@@ -70,8 +82,8 @@ export const RowWithCenteredContent = styled.div`
   align-items: center;
 `
 
-export const VioletBox = styled(Link) <WithMargin>`
-  width: calc(50% - 0.75rem);
+export const VioletBox = styled(Link)<WithMargin>`
+  width: 39%;
   height: 13rem;
   display: flex;
   flex-direction: column;
@@ -81,4 +93,36 @@ export const VioletBox = styled(Link) <WithMargin>`
   background-color: ${COLORS.primary};
   border-radius: ${BORDER_RADIUS.lg};
   margin: ${(props) => props.margin || '0'};
+`
+export const YellowHintBlock = styled.div`
+  display: inline;
+  background: rgba(189, 136, 0, 0.5);
+  backdrop-filter: blur(16px);
+  padding: 2rem;
+  border-radius: ${BORDER_RADIUS.lg};
+  color: ${COLORS.main};
+  font-family: ${FONTS.rg};
+  font-size: ${FONT_SIZES.lg};
+  text-align: center;
+  line-height: 2.5rem;
+`
+export const Button = styled.button`
+  width: 100%;
+  background: ${COLORS.primary};
+  font-family: ${FONTS.md};
+  padding-top: 1.3rem;
+  padding-bottom: 1.3rem;
+  color: ${COLORS.main};
+  font-size: ${FONT_SIZES.rg};
+  outline: none;
+  border: none;
+  border-radius: ${BORDER_RADIUS.md};
+`
+export const TextContainer = styled.div`
+  padding: 2rem 1rem;
+  height: 20rem;
+  width: calc(100% - 2rem);
+  background: rgba(34, 36, 41, 0.7);
+  border: 0.1rem solid ${COLORS.border};
+  border-radius: ${BORDER_RADIUS.lg};
 `
