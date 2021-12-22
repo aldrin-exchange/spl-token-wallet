@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { RowWithStrechedContent } from '../CommonStyledComponents'
+import { RowWithStrechedContent } from '../commonStyledComponents/Containers'
 import { BORDER_RADIUS, COLORS, FONT_SIZES } from '../variables'
 
 export const HeaderContainer = styled(RowWithStrechedContent)`
@@ -18,7 +18,10 @@ export const BackButton = styled.button`
   border-radius: ${BORDER_RADIUS.xl};
   border: none;
   cursor: pointer;
-
+  &:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+  }
   img {
     margin: 0 3px 1px 0;
   }

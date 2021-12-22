@@ -5,10 +5,10 @@ scriptTag.src = chrome.runtime.getURL('script.js');
 container.insertBefore(scriptTag, container.children[0]);
 container.removeChild(scriptTag);
 
-window.addEventListener('ccai_injected_script_message', (event) => {
+window.addEventListener('aldrin_injected_script_message', (event) => {
   chrome.runtime.sendMessage(
     {
-      channel: 'ccai_contentscript_background_channel',
+      channel: 'aldrin_contentscript_background_channel',
       data: event.detail,
     },
     (response) => {
@@ -17,7 +17,7 @@ window.addEventListener('ccai_injected_script_message', (event) => {
         return;
       }
       window.dispatchEvent(
-        new CustomEvent('ccai_contentscript_message', { detail: response }),
+        new CustomEvent('aldrin_contentscript_message', { detail: response }),
       );
     },
   );

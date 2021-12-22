@@ -30,6 +30,7 @@ export const COLORS = {
   navLinkActiveBg: 'rgb(46, 46, 46)',
   navLinkActive: 'rgb(209, 221, 239)',
   primaryWhite: '#F8FAFF',
+  orange: '#D44C32',
 }
 
 export const BORDER_RADIUS = {
@@ -46,7 +47,7 @@ export const FONT_SIZES = {
   xs: '0.6875em', // 11px
   sm: '0.8125em', // 13px
   rg: '1.3rem',
-  md: '1em', // 16px
+  md: '1.1rem', // 16px
   lg: '1.6rem', // 16px
   xl: '2em',
   xxl: '2.5em',

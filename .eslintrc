@@ -24,6 +24,7 @@
         "maxEOF": 1
       }
     ],
+    "max-len": ["error", { "code": 200 }],
     "react/function-component-definition": ["error", {
       "namedComponents": "arrow-function",
       "unnamedComponents":  "arrow-function"
